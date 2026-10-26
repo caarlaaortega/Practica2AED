@@ -83,4 +83,31 @@ grafico3
 ggsave('./results/Ejercicio1.pdf', plot = grafico3)
 
 ```
+# Ejercicio 2 
+
+```{r}
+# Representamos un gráfico de dispersión: 
+grafico_ej2 <- ggplot(ds, mapping = aes(Temp9am, Pressure9am)) + geom_point()
+grafico_ej2
+
+grafico_ej2_v1 <- ggplot(ds, mapping = aes(Temp9am, Pressure9am, shape = RainToday)) + geom_point()
+grafico_ej2_v1
+
+grafico_ej2_v2 <- ggplot(ds, mapping = aes(Temp9am, Pressure9am, colour = RainToday)) + geom_point()
+grafico_ej2_v2
+
+grafico_ej2_v2 <- grafico_ej2_v2 + labs(
+  title = 'Temperatura vs. Presión (9am)',
+  subtitle = 'Relación con la probabilidad de lluvia hoy',
+  x = 'Temperatura (ºC)',
+  y = 'Presión (Pa)',
+  colour = 'Lluvia hoy'
+)
+grafico_ej2_v2
+
+# Almacenar el último gráfico:
+ggsave('./results/Ejercicio2.pdf', plot = grafico_ej2_v2)
+```
+
+Se diferencia mejor con la representación de la variable categórica 'RainToday' como un color, pues al agruparse los puntos negros de diferentes formas entre ellos, es dificil visualizarlos.
 
