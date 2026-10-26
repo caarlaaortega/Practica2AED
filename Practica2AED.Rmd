@@ -165,5 +165,26 @@ ggsave('./results/Ejercicio4.pdf')
 El dataset tiene 200 instancias con 3 variables: la fecha, el fabricante y las ventas de dichos dispositivos. 
 Con el gráfico representado únicamente de puntos (con geom_point()) es imposible estudiar la evolución de las ventas para cada fabricante, pues carece de una línea de tendencia. 
 
+# Ejercicio 5 
+```{r}
+load('./data/Experimento.RData')
+str(Experimento)
 
+exper.grafico1 <- ggplot(Experimento, aes(Dosis,  Altura, group =  Complemento, shape= Complemento, linetype = Complemento)) + geom_point() + geom_line()
+exper.grafico1
+
+exper.grafico2 <- exper.grafico1 + geom_errorbar(aes(ymin= Altura - Error_Altura, ymax = Altura + Error_Altura), width = 0.1, position = position_dodge(0.1))
+exper.grafico2
+
+exper.grafico3 <- ggplot(Experimento, aes(Dosis, Altura, group=Complemento,colour=Complemento)) +
+  geom_point(aes(colour=Complemento)) +
+  geom_line(aes(linetype = Complemento)) + 
+  geom_errorbar(aes(ymin= Altura - Error_Altura, ymax = Altura + Error_Altura), width = 0.1, position = position_dodge(0.1)) + scale_color_brewer(palette='Reds')
+exper.grafico3
+
+ggsave('./results/Ejercicio5.pdf')
+  
+```
+
+El dataset Experimento contiene 6 observaciones de las que se recogió las características: complemento (categórica de 2 niveles), dosis, altura y error de la altura.
 
