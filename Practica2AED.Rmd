@@ -188,3 +188,34 @@ ggsave('./results/Ejercicio5.pdf')
 
 El dataset Experimento contiene 6 observaciones de las que se recogió las características: complemento (categórica de 2 niveles), dosis, altura y error de la altura.
 
+# Ejercicio 6
+```{r}
+load('./data/iceRiver.RData') # ice.river.df
+str(ice.river.df)
+
+# Como los flujos están en dos variables diferentes, vamos a transformar los datos: 
+df_long <- ice.river.df %>%
+  pivot_longer(
+    cols = c(flow.vat, flow.jok),
+    names_to = 'rio',
+    values_to = 'caudal'
+  )
+
+grafico_caudal <- ggplot(df_long, aes(x = time, y = caudal, color = rio)) +
+  geom_line(linewidth = 0.8) +
+  scale_color_manual(
+    values = c("flow.vat" = "red", "flow.jok" = "blue"),
+    labels = c("flow.vat" = "Río VAT", "flow.jok" = "Río JOK")
+  ) +
+  labs(
+    title = "Evolución del Caudal de los Ríos",
+    x = "Período de Tiempo",
+    y = "Caudal",
+    color = "Ríos"
+  )
+grafico_caudal
+
+ggsave('./results/Ejercicio6.pdf')
+```
+Este dataset contiene 1096 observaciones del caudal de los rios islandeses medidos durante 3 años, de los que se ha recogido información de flow.vat, flow.jot, prec, temp y time.
+
