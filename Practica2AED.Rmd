@@ -219,3 +219,76 @@ ggsave('./results/Ejercicio6.pdf')
 ```
 Este dataset contiene 1096 observaciones del caudal de los rios islandeses medidos durante 3 años, de los que se ha recogido información de flow.vat, flow.jot, prec, temp y time.
 
+# Ejercicio 7
+```{r}
+load('./data/weatherAUS_distributions.RData')
+
+ejer7.grafico1 <- ggplot(ds, aes(Year, MinTemp)) + geom_boxplot()
+ejer7.grafico1
+
+ejer7.grafico2 <- ggplot(ds, aes(Year, MaxTemp)) + geom_violin(aes(fill = Year)) + labs(
+title='Distribución de temperaturas máximas por año', 
+x = 'Año', 
+y = 'Temperatura (ºC)') +
+  theme(plot.title = element_text(size=10))
+ejer7.grafico2
+
+ejer7.grafico3 <- ggplot(ds, aes(Year, MaxTemp)) + geom_violin(aes(fill = Year), show.legend = FALSE) + labs(
+title='Distribución de temperaturas máximas por año', 
+x = 'Año', 
+y = 'Temperatura (ºC)') +
+  theme(plot.title = element_text(size=10), axis.text.x = element_text(angle=45))
+ejer7.grafico3
+
+ggsave('./results/Ejercicio7.pdf')
+
+```
+
+# Ejercicio 8
+```{r}
+# Se trata de un fichero txt, por lo que: 
+
+# URL del dataset
+url <- "http://assets.datacamp.com/blog_assets/chol.txt"
+
+# Cargar los datos en un data frame
+datos_ejer8 <- read.table(url, header = TRUE)
+
+ejer8.grafico1 <- ggplot(datos_ejer8) + geom_histogram(aes(HEIGHT))
+ejer8.grafico1
+
+ejer8.grafico1 <- ejer8.grafico1+ labs(
+  title='Histograma de la variable Altura',
+  x = 'Altura (cm)', 
+  y = 'Frecuencia'
+)
+ejer8.grafico1
+
+ejer8.grafico2 <- ggplot(datos_ejer8) + geom_histogram(aes(HEIGHT),
+                                                       breaks=  seq(155,195,by=2)) +labs(
+  title='Histograma de la variable Altura',
+  x = 'Altura (cm)', 
+  y = 'Frecuencia'
+)
+ejer8.grafico2
+
+ejer8.grafico3 <- ggplot(datos_ejer8,aes(x=HEIGHT)) + geom_histogram(aes(y=after_stat(density)),
+                                                       breaks=  seq(155,195,by=2),fill='blue', alpha=0.5,colour ='red') +labs(
+  title='Histograma de la variable Altura',
+  x = 'Altura (cm)', 
+  y = 'Frecuencia'
+) + geom_density(col='green')
+ejer8.grafico3
+
+ejer8.grafico4 <- ggplot(datos_ejer8,aes(x=HEIGHT)) + geom_histogram(aes(y=after_stat(density)),
+                                                       breaks=  seq(155,195,by=2),fill='blue', alpha=0.5,colour ='red') +labs(
+  title='Histograma de la variable Altura',
+  x = 'Altura (cm)', 
+  y = 'Frecuencia'
+) + geom_density(col='green')+facet_grid(.~MORT)
+ejer8.grafico4
+
+ggsave('./results/Ejercicio8.pdf')
+
+```
+
