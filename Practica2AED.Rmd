@@ -144,7 +144,26 @@ Al usar geom_jitter() en lugar de geom_point(), se añade un pequeño desplazami
 
 # Ejercicio 4
 ```{r}
-load('./data/Ejercicio4_Data.Rdata')
+load('./data/Ejercicio4_Data.Rdata') # DatosEjer4
+
+ejer4.grafico1 <- ggplot(DatosEjer4, mapping = aes(Fecha, Ventas, colour = Fabricante)) + geom_point()
+ejer4.grafico1
+
+ejer4.grafico1 <- ejer4.grafico1 + geom_line()
+ejer4.grafico1
+
+ejer4.grafico2 <- ggplot(DatosEjer4, aes(Fecha, Ventas, group = Fabricante)) + 
+  geom_line(aes(linetype = Fabricante, color = Fabricante)) + geom_point(aes(color = Fabricante))
+ejer4.grafico2
+
+ejer4.grafico2 <- ejer4.grafico2 + labs(title = 'Ventas mensuales de diferentes compañías tecnológicas') +
+  theme(plot.title = element_text(size=10))
+ejer4.grafico2
+
+ggsave('./results/Ejercicio4.pdf')
 ```
+El dataset tiene 200 instancias con 3 variables: la fecha, el fabricante y las ventas de dichos dispositivos. 
+Con el gráfico representado únicamente de puntos (con geom_point()) es imposible estudiar la evolución de las ventas para cada fabricante, pues carece de una línea de tendencia. 
+
 
 
