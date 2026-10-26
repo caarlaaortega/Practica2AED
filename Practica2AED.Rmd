@@ -1,0 +1,86 @@
+---
+title: "Práctica 2 | Visualización"
+author: "Carla Ortega Fernández"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+  html_document:
+    echo: true
+    number_sections: true
+    theme: lumen
+    toc: true
+  html_notebook:
+    echo: true
+    number_sections: true
+    toc: true
+  bookdown::pdf_document2:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+    figure_caption: "Figura" # Referencias en castellano
+    table_caption: "Tabla"
+  bookdown::html_document2:
+    echo: true
+    number_sections: true
+    theme: spacelab
+    toc: true
+    figure_caption: "Figura"
+    table_caption: "Tabla"
+always_allow_html: true
+params:
+  lang: ES
+lang: "`r switch(params$lang, ES = 'es-ES', EN = 'en-US')`"
+subtitle: "Introducción a la Ciencia de Datos. Máster en Ciencia de Datos- UV"
+language:
+  label:
+    fig: 'Figura '
+    tab: 'Tabla '
+    eq: 'Ecuación '
+    thm: 'Teorema '
+    lem: 'Lema '
+    def: 'Definición '
+    cor: 'Corolario '
+    prp: 'Proposición '
+    exm: 'Ejemplo '
+    exr: 'Ejercicio '
+    proof: 'Demostración. '
+    remark: 'Nota: '
+    solution: 'Solución. '
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(pacman)
+packages =  c("tidyverse", "knitr", "ggplot2", "datasets", "RColorBrewer",'latex2exp')
+pacman::p_load(char=packages)
+```
+
+# Ejercicio 1
+```{r}
+#  Cargamos el fichero de RData
+load('./data/weatherAUS.RData')
+
+grafico1 <- ggplot(ds, mapping = aes(MinTemp, MaxTemp))
+grafico1 <- grafico1 + geom_point()
+grafico1
+
+grafico2 <-  ggplot(ds, mapping = aes(MinTemp, MaxTemp, colour = RainTomorrow)) + geom_point()
+grafico2
+
+grafico3 <- grafico2 + ggtitle('Máxima ~ Mínima temperatura', subtitle = 'Lluvia mañana')
+grafico3
+
+# Guardamos el último gráfico
+ggsave('./results/Ejercicio1.pdf', plot = grafico3)
+
+```
+
