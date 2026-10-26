@@ -111,6 +111,8 @@ ggsave('./results/Ejercicio2.pdf', plot = grafico_ej2_v2)
 
 Se diferencia mejor con la representación de la variable categórica 'RainToday' como un color, pues al agruparse los puntos negros de diferentes formas entre ellos, es dificil visualizarlos.
 
+Sería  dificil  diferenciar los días que lloverá de los que no con estos datos, pues la mayor parte de ellos  presentan valores semejantes de presión y temperatura, pero con predicciones diferentes. 
+
 # Ejercicio 3  
 ```{r}
 # Cargamos el archivo de iris.tidy.RData:
@@ -141,6 +143,8 @@ Se ve mejor organizado por filas que por columnas, pues está al mismo nivel y e
 
 Al usar geom_jitter() en lugar de geom_point(), se añade un pequeño desplazamiento a los puntos, permitiendo que se vean separados entre sí en vez de estar amontonados uno sobre otro en forma de líneas. De este modo, se asemeja más a un gráfico de dispersión. 
 
+Podemos ver que la especie  setosa tiene  los pétalos más pequeños, y un sépalo más grannde (la  diferencia es más notable entre estas partes que en el resto de especies)
+
 
 # Ejercicio 4
 ```{r}
@@ -163,7 +167,10 @@ ejer4.grafico2
 ggsave('./results/Ejercicio4.pdf')
 ```
 El dataset tiene 200 instancias con 3 variables: la fecha, el fabricante y las ventas de dichos dispositivos. 
-Con el gráfico representado únicamente de puntos (con geom_point()) es imposible estudiar la evolución de las ventas para cada fabricante, pues carece de una línea de tendencia. 
+Con el gráfico representado únicamente de puntos (con geom_point()) es imposible estudiar la evolución de las ventas para cada fabricante, pues carece de una línea de tendencia.
+
+A la vista del gráfico, Microsoft presenta mayores ventas de forma mantenida con el tiempo, aunque en 2006 se manifestó una subida significativa en las ventas de apple. Los picos de ventas en ambos casos coinciden temporalmente, posiblemente debido a actualizaciones de la tecnología.  
+
 
 # Ejercicio 5 
 ```{r}
@@ -187,6 +194,7 @@ ggsave('./results/Ejercicio5.pdf')
 ```
 
 El dataset Experimento contiene 6 observaciones de las que se recogió las características: complemento (categórica de 2 niveles), dosis, altura y error de la altura.
+
 
 # Ejercicio 6
 ```{r}
@@ -219,6 +227,8 @@ ggsave('./results/Ejercicio6.pdf')
 ```
 Este dataset contiene 1096 observaciones del caudal de los rios islandeses medidos durante 3 años, de los que se ha recogido información de flow.vat, flow.jot, prec, temp y time.
 
+El caudal del rio JOK es superior al del Río VAT de forma mantenida, y alzanzaron picos en los inicios de año.
+
 # Ejercicio 7
 ```{r}
 load('./data/weatherAUS_distributions.RData')
@@ -243,6 +253,7 @@ ejer7.grafico3
 ggsave('./results/Ejercicio7.pdf')
 
 ```
+A la vista de los resultados de la ultima gráfica, la dispersión de tempearaturas fue menor en 2018,y fueron elevadas (enntorno a 30ºC de media); la dispersión fue mayor en 2018, contando con valores de 10ºC a 40ºC.
 
 # Ejercicio 8
 ```{r}
