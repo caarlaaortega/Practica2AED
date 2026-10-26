@@ -111,3 +111,40 @@ ggsave('./results/Ejercicio2.pdf', plot = grafico_ej2_v2)
 
 Se diferencia mejor con la representación de la variable categórica 'RainToday' como un color, pues al agruparse los puntos negros de diferentes formas entre ellos, es dificil visualizarlos.
 
+# Ejercicio 3  
+```{r}
+# Cargamos el archivo de iris.tidy.RData:
+load('./data/iris_tidy.RData')
+str(iris.tidy)
+
+iris.grafico1 <- ggplot(iris.tidy, mapping = aes(Species, Value))
+iris.grafico1 <- iris.grafico1 + geom_point()
+iris.grafico1
+
+iris.grafico2 <- ggplot(iris.tidy, mapping = aes(Species, Value, colour =  Part)) + geom_point()
+iris.grafico2
+
+iris.grafico2_v1 <- iris.grafico2 + facet_grid(.~Measure)
+iris.grafico2_v1
+
+iris.grafico2_v2 <- iris.grafico2 + facet_grid(Measure~.)
+iris.grafico2_v2
+
+iris_grafico2_v3 <- ggplot(iris.tidy, mapping = aes(Species, Value, colour =  Part)) + geom_jitter() + facet_grid(.~Measure)
+iris_grafico2_v3
+
+ggsave('./results/Ejercicio3.pdf', plot = get_last_plot())
+```
+El dataset contiene 600 instancias de45 variables, que son: la especie a la que pertenecen, la parte que se aborda (pétalo o sépalo), la medida (la longitud o la amplitud) y el valor (value) de dicha medida. 
+
+Se ve mejor organizado por filas que por columnas, pues está al mismo nivel y es más fácil hacer separaciones y diferenciar ambos grupos de medidas de longitud y anchura.
+
+Al usar geom_jitter() en lugar de geom_point(), se añade un pequeño desplazamiento a los puntos, permitiendo que se vean separados entre sí en vez de estar amontonados uno sobre otro en forma de líneas. De este modo, se asemeja más a un gráfico de dispersión. 
+
+
+# Ejercicio 4
+```{r}
+load('./data/Ejercicio4_Data.Rdata')
+```
+
+
